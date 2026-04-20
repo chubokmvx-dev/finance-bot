@@ -116,7 +116,8 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "• «купив ліки за 280»\n\n"
         "І я сам все занесу! ✨",
         reply_markup=main_kb(),
-    )async def send_dashboard(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    )
+    async def send_dashboard(update: Update, context: ContextTypes.DEFAULT_TYPE):
     uid = update.effective_user.id
     data = load_data()
     u = get_user(data, uid)
