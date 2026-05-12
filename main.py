@@ -145,6 +145,36 @@ def task_check_upcoming_match():
         time.sleep(2)
         polls.post_match_poll(match["home_team"], match["away_team"], reply_to=msg_id)
 
+def task_urgent_check():
+    """Перевірка термінових новин кожні 5 хвилин."""
+    articles = fetcher.fetch_all()
+    urgent_keywords = [
+        "тривога", "повітряна тривога", "ракет", "шахед", 
+        "удар", "вибух", "загроза", "дрон"
+    ]
+    
+    urgent = []
+    for a in articles:
+        text = (a["title"] + " " + a["summary"]).lower()
+        if any(kw in text for kw in urgent_keywords):
+            if not db.is_published(a["url"]):
+                urgent.append(a)
+    
+    if not urgent:
+        return
+    
+    logger.info(f"⚠️ {len(urgent)} urgent articles found")
+    for article in urgent[:1]:  # максимум 1 терміновий пост за раз
+        formatted = ai.format_post(article)
+        if formatted:
+            msg_id = poster.send_post(
+                text=formatted["text"],
+                image_url=article.get("image_url"),
+                parse_mode=formatted.get("parse_mode", "HTML"),
+            )
+            if msg_id:
+                db.mark_published(article["url"], msg_id, "urgent")
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # ПЛАНУВАЛЬНИК
@@ -160,6 +190,9 @@ def setup_schedule():
     # Перевірка анонсів матчів вранці та опівдні
     schedule.every().day.at(config.MORNING_DIGEST_TIME).do(task_check_upcoming_match)
     schedule.every().day.at("13:00").do(task_check_upcoming_match)
+
+    schedule.every(5).minutes.do(task_urgent_check)
+
 
 
 def main():
