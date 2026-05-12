@@ -149,9 +149,13 @@ def task_urgent_check():
     """Перевірка термінових новин кожні 5 хвилин."""
     articles = fetcher.fetch_all()
     urgent_keywords = [
-        "тривога", "повітряна тривога", "ракет", "шахед", 
-        "удар", "вибух", "загроза", "дрон"
-    ]
+    "тривога", "повітряна тривога", "ракет", "шахед",
+    "удар", "вибух", "загроза", "дрон", "атака",
+    "масована атака", "бомбардувальник", "іскандер",
+    "калібр", "кинджал", "Х-101", "балістич",
+    "активність авіації", "аеродром базування"
+]
+
     
     urgent = []
     for a in articles:
@@ -164,7 +168,7 @@ def task_urgent_check():
         return
     
     logger.info(f"⚠️ {len(urgent)} urgent articles found")
-    for article in urgent[:1]:  # максимум 1 терміновий пост за раз
+    for article in urgent[:3]:  # максимум 1 терміновий пост за раз
         formatted = ai.format_post(article)
         if formatted:
             msg_id = poster.send_post(
