@@ -16,6 +16,10 @@ RSS_FEEDS = [
     "https://tsn.ua/rss/full.rss",
     "https://www.rbc.ua/ukr/rss.xml",
     "https://mind.ua/rss",
+    "https://www.ukrainealarm.com/rss",
+    "https://suspilne.media/chernivtsi/rss/",
+    "https://t.me/s/ppo_alert",
+
 ]
 
 NEWS_FETCH_INTERVAL_MIN     = 10
