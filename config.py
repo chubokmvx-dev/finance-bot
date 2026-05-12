@@ -21,6 +21,10 @@ RSS_FEEDS = [
     "https://mind.ua/rss",
     "https://www.ukrainealarm.com/rss",
     "https://t.me/s/ppo_alert",
+    "https://rsshub.app/telegram/channel/siriykardynal",
+    "https://rsshub.app/telegram/channel/kpszsu",
+    "https://rsshub.app/telegram/channel/air_alert_ua",
+    
 ]
 
 
