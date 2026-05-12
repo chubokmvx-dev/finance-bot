@@ -1,6 +1,8 @@
 import schedule
 import time
 import logging
+import os
+print("ANTHROPIC KEY:", os.environ.get("ANTHROPIC_API_KEY", "NOT FOUND")[:10])
 from datetime import datetime
 
 from database import Database
