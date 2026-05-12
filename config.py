@@ -19,13 +19,17 @@ RSS_FEEDS = [
     "https://www.epravda.com.ua/rss/",
     "https://tsn.ua/rss/full.rss",
     "https://mind.ua/rss",
-    "https://www.ukrainealarm.com/rss",
-    "https://t.me/s/ppo_alert",
-    "https://rsshub.app/telegram/channel/siriykardynal",
-    "https://rsshub.app/telegram/channel/kpszsu",
-    "https://rsshub.app/telegram/channel/air_alert_ua",
     
 ]
+URGENT_RSS_FEEDS = [
+    "https://rsshub.app/telegram/channel/goodchernivtsi",
+    "https://rsshub.app/telegram/channel/radar_chernivtsi",
+]
+
+MASSIVE_ATTACK_RSS_FEEDS = [
+    "https://rsshub.app/telegram/channel/siriykardynal",
+]
+
 
 
 NEWS_FETCH_INTERVAL_MIN     = 30
