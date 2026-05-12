@@ -2,6 +2,8 @@ import feedparser
 import requests
 import logging
 import re
+import calendar
+from datetime import datetime, timezone, timedelta
 import config
 
 logger = logging.getLogger(__name__)
@@ -9,7 +11,6 @@ logger = logging.getLogger(__name__)
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; NewsBot/1.0)"}
 
 def _extract_og_image(url: str) -> str | None:
-    """Витягує og:image зі сторінки статті."""
     try:
         r = requests.get(url, headers=HEADERS, timeout=6)
         match = re.search(
@@ -31,13 +32,24 @@ def _extract_og_image(url: str) -> str | None:
 
 
 class NewsFetcher:
+
+    def _is_recent(self, entry) -> bool:
+        """Чи опублікована новина за останні 24 години."""
+        try:
+            t = entry.get("published_parsed")
+            if not t:
+                return True  # немає дати — беремо
+            pub = datetime.fromtimestamp(calendar.timegm(t), tz=timezone.utc)
+            return datetime.now(timezone.utc) - pub < timedelta(hours=24)
+        except:
+            return True
+
     def fetch_all(self) -> list[dict]:
         articles = []
         for feed_url in config.RSS_FEEDS:
             try:
                 feed = feedparser.parse(feed_url)
-                for entry in feed.entries[:10]:
-                    # Шукаємо зображення прямо в RSS
+                for entry in feed.entries[:15]:
                     image_url = None
                     if hasattr(entry, "media_content"):
                         for m in entry.media_content:
@@ -56,7 +68,7 @@ class NewsFetcher:
                         "published": entry.get("published", ""),
                         "image_url": image_url,
                     }
-                    if article["title"] and article["url"]:
+                    if article["title"] and article["url"] and self._is_recent(entry):
                         articles.append(article)
             except Exception as e:
                 logger.warning(f"Feed error {feed_url}: {e}")
@@ -65,7 +77,6 @@ class NewsFetcher:
         return articles
 
     def enrich_with_image(self, article: dict) -> dict:
-        """Якщо зображення немає в RSS — витягуємо og:image зі сторінки."""
         if not article.get("image_url") and article.get("url"):
             article["image_url"] = _extract_og_image(article["url"])
         return article
