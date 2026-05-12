@@ -1,10 +1,12 @@
 import anthropic
+import os
 import json
 import logging
 import config
 
 logger = logging.getLogger(__name__)
-client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
+client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+
 
 # ─── Системні промпти ─────────────────────────────────────────────────────────
 
