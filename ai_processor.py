@@ -75,7 +75,7 @@ class AIProcessor:
 
         try:
             response = client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-3-5-haiku-20241022",
                 max_tokens=1000,
                 system=FILTER_SYSTEM,
                 messages=[{"role": "user", "content": prompt}]
@@ -113,7 +113,7 @@ class AIProcessor:
 
         try:
             response = client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-3-5-haiku-20241022",
                 max_tokens=800,
                 system=FORMAT_SYSTEM,
                 messages=[{"role": "user", "content": prompt}]
@@ -146,7 +146,7 @@ class AIProcessor:
 
         try:
             response = client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-3-5-haiku-20241022",
                 max_tokens=300,
                 system=FORMAT_SYSTEM,
                 messages=[{"role": "user", "content": prompt}]
@@ -179,7 +179,7 @@ class AIProcessor:
 
         try:
             response = client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-3-5-haiku-20241022",
                 max_tokens=400,
                 system=FORMAT_SYSTEM,
                 messages=[{"role": "user", "content": prompt}]
@@ -213,7 +213,7 @@ class AIProcessor:
 
         try:
             response = client.messages.create(
-                model="claude-sonnet-4-20250514",
+                model="claude-3-5-haiku-20241022",
                 max_tokens=300,
                 system=FILTER_SYSTEM,
                 messages=[{"role": "user", "content": prompt}]
