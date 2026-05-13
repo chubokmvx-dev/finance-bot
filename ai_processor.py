@@ -45,7 +45,7 @@ FORMAT_SYSTEM = """Ти — автор Telegram-каналу «Чернівці 
 - Рядок 2: жирний заголовок <b>...</b>
 - 2-4 речення суті
 - Практичний висновок або порада (якщо є)
-- Фінал: <a href="https://t.me/chernivtsi_now">📢 Чернівці Now</a>
+- Фінал: <a href="URL_ДЖЕРЕЛА">Джерело</a> | <a href="https://t.me/chernivtsi_now">📢 Чернівці Now</a>
 
 Максимум 180 слів. 1-2 емодзі — доречно, не хаотично.
 Відповідай ТІЛЬКИ JSON, без зайвого тексту."""
@@ -109,7 +109,7 @@ class AIProcessor:
 Заголовок: {article['title']}
 Опис: {article['summary'][:500]}
 Джерело: {article['source']}
-Посилання: {article['url']}
+Посилання: {article['url']} ОБОВ'ЯЗКОВО вкажи посилання на джерело у форматі: <a href="{article['url']}">Джерело</a> | <a href="https://t.me/chernivtsi_now">📢 Чернівці Now</a>
 Категорія: {article.get('category', 'national')}
 
 Поверни JSON:
