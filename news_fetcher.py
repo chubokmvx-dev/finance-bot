@@ -40,7 +40,7 @@ class NewsFetcher:
             if not t:
                 return True  # немає дати — беремо
             pub = datetime.fromtimestamp(calendar.timegm(t), tz=timezone.utc)
-            return datetime.now(timezone.utc) - pub < timedelta(hours=2)
+            return datetime.now(timezone.utc) - pub < timedelta(hours=12)
 
         except:
             return True
