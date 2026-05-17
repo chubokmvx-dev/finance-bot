@@ -19,6 +19,18 @@ RSS_FEEDS = [
     "https://www.epravda.com.ua/rss/",
     "https://tsn.ua/rss/full.rss",
     "https://mind.ua/rss",
+    "https://www.facebook.com/feeds/page.php?id=chernivcity&format=rss",
+    "https://cv.npu.gov.ua/rss",          # поліція Чернівців  
+    "https://cv.dsns.gov.ua/rss",          # ДСНС Чернівці
+    "https://www.facebook.com/feeds/page.php?id=CVODAofficial&format=rss",
+    "https://www.pravda.com.ua/rss/",
+    "https://nv.ua/rss/all.xml",
+    "https://hromadske.ua/rss",
+    "https://zaxid.net/rss",              # захід України
+    "https://www.google.com/alerts/feeds/05075569442616117815/6081417593725650416",
+    "https://www.google.com/alerts/feeds/05075569442616117815/5242000540027592511",
+    "https://www.google.com/alerts/feeds/05075569442616117815/8763462206768633624",
+    "https://www.google.com/alerts/feeds/05075569442616117815/9002716388982372892",
     
 ]
 URGENT_RSS_FEEDS = [
